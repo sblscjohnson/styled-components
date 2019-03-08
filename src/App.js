@@ -1,25 +1,58 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './Components/Navbar'
+import styled from 'styled-components'
+
+
+const BackPic = styled.div`
+  background-image: url('https://cdn-images-1.medium.com/max/1600/0*I-sI3u34g0ydRqyA');
+  background-position: center;
+  background-size: cover;
+  height: 85vh;
+`
+
+const Admin = styled.button `
+  position: absolute;
+  left: 45vw;
+  top: 40vh;
+  width: 10vw;
+  height: 5vh;
+  background-color: red;
+  padding: auto;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px black solid;
+`
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      admin: ''
+    }
+  }
+
+  setAdmin = () => {
+    console.log(this.state.admin)
+    if(this.state.admin) {
+      this.setState({
+        admin: ''
+      }) 
+    } else {
+      this.setState({
+        admin: 'admin'
+      })
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Navbar yes={this.state.admin} />
+        <BackPic> 
+          <Admin onMouseOut={this.setAdmin} onMouseOver={this.setAdmin}>Admin?</Admin>
+        
+        </BackPic>
+        
       </div>
     );
   }
